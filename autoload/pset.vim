@@ -4,7 +4,7 @@ function! pset#pset(...)
     let orig_mark = getpos("'m")
 
     " Open environment
-    put! = \"\\begin{pset}\n\n\"
+    put! = \"\\begin{probset}\n\n\"
     " Create mark for indentation
     mark m
 
@@ -14,7 +14,7 @@ function! pset#pset(...)
     endfor
 
     " End text
-    put = '\end{pset}'
+    put = '\end{probset}'
     " Move before end environment
     -1
     " Indent text
