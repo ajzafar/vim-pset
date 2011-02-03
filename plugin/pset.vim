@@ -4,7 +4,7 @@
 " License: This file is placed in the public domain.
 
 " Basic set up {{{
-if (exists('g:loaded_pset') && g:loaded_pset) || &cp
+if exists('g:loaded_pset') || &cp
     finish
 endif
 let g:loaded_pset = 1
