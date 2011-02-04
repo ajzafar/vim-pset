@@ -1,20 +1,30 @@
-function! pset#pset(...)
+function s:GetVar(var)
+    if exists('b:' . a:var)
+        return b:{a:var}
+    else
+        return g:{a:var}
+    endif
+endfunction
+
+function pset#pset(...)
     " Store things
     let orig_pos = getpos('.')
     let orig_mark = getpos("'m")
 
     " Open environment
-    put! = \"\\begin{probset}\n\n\"
+    silent put! = s:GetVar('pset_begin')
+    silent put _
     " Create mark for indentation
     mark m
 
     " Place problems
     for problem in a:000
-        put = '\prob{' . problem . \"}\n\n\"
+        silent put = substitute(s:GetVar('pset_problem'), '\r', problem, '')
+        silent put _
     endfor
 
     " End text
-    put = '\end{probset}'
+    silent put = s:GetVar('pset_end')
     " Move before end environment
     -1
     " Indent text

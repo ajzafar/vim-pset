@@ -17,6 +17,20 @@ if !exists(":Pset")
     command -nargs=+ Pset call pset#pset(<f-args>)
 endif
 
+" Taken from NERD Commenter
+" Given a var name and a value, set the var to the value if it doesn't exist
+function s:InitVariable(var, value)
+    if !exists(a:var)
+        exec 'let ' . a:var . ' = ' . "'" . a:value . "'"
+        return 1
+    endif
+    return 0
+endfunction
+
+call s:InitVariable('g:pset_begin', '\begin{probset}')
+call s:InitVariable('g:pset_end', '\end{probset}')
+call s:InitVariable('g:pset_problem', "\\prob{\r} ")
+
 " Basic set up {{{
 let &cpo = s:save_cpo
 " }}}
