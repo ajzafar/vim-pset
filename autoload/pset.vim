@@ -9,13 +9,11 @@ endfunction
 function pset#pset(...)
     " Store things
     let orig_pos = getpos('.')
-    let orig_mark = getpos("'m")
 
     " Open environment
-    silent put! = s:GetVar('pset_begin')
-    silent put _
-    " Create mark for indentation
-    mark m
+    if !empty(s:GetVar('pset_begin'))
+        silent put! = s:GetVar('pset_begin')
+    endif
 
     " Place problems
     for problem in a:000
@@ -24,13 +22,10 @@ function pset#pset(...)
     endfor
 
     " End text
-    silent put = s:GetVar('pset_end')
-    " Move before end environment
-    -1
-    " Indent text
-    'm,.>
+    if !empty(s:GetVar('pset_begin'))
+        silent put = s:GetVar('pset_end')
+    endif
 
     " Restore things
-    call setpos("'m", orig_mark)
     call setpos('.', orig_pos)
 endfunction

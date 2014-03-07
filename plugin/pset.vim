@@ -27,9 +27,9 @@ function s:InitVariable(var, value)
     return 0
 endfunction
 
-call s:InitVariable('g:pset_begin', '\begin{probset}')
-call s:InitVariable('g:pset_end', '\end{probset}')
-call s:InitVariable('g:pset_problem', "\\prob{\r} ")
+call s:InitVariable('g:pset_begin', '')
+call s:InitVariable('g:pset_end', '')
+call s:InitVariable('g:pset_problem', "\\begin{prob}[\r]\n  \n\\end{prob}")
 
 " Basic set up {{{
 let &cpo = s:save_cpo
